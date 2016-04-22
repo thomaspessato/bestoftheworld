@@ -1,0 +1,314 @@
+body,html{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.column__left,
+.column__right {
+  float: left;
+  padding: 50px;
+  color: white;
+  padding-top: 0;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.column__left {
+  width: 65%;
+}
+
+.column__right {
+  width: 35%;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    height: 0;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(255,255,255,.4);
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,.5);
+}
+
+header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 1px 1px 10px -1px black;
+}
+
+
+.card{
+  display: inline-block;
+  background: attr(data-img);
+  padding: 0;
+  height: 250px;
+  width: 250px;
+  background-color: white;
+  transition: all 250ms ease;
+  margin: 10px;
+  box-shadow: 1px 1px 10px -3px black;
+  position: relative;
+  background-size: cover!important;
+  cursor: pointer;
+}
+
+.card:hover {
+  opacity: 0.5;
+  border-radius: 10px;
+}
+
+.author {
+  color: white;
+  position: absolute;
+  padding: 10px;
+  box-sizing: border-box;
+  bottom: 0px;
+  font-size: 12px;
+  padding: 5px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  text-align: center;
+  background-color: rgba(0,0,0,0.6);
+
+}
+
+.welcome-container {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: table;
+  background: url("http://science-all.com/images/landscape/landscape-04.jpg");
+  background-attachment: fixed;
+}
+
+.aligned-middle {
+  display: table-cell;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.welcome-text {
+  margin-bottom: 5px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0;
+  font-size: 60px;
+  color: white;
+  text-shadow: 2px 3px 5px black;
+}
+
+.welcome-desc {
+  color: white;
+  text-shadow: 2px 3px 5px black;
+  text-align: center;
+  font-size: 20px;
+  padding: 0 50px;
+}
+
+.navbar__list{
+  height: 100%;
+  margin: 0 auto;
+  padding: 30px 80px;
+  text-align: center;
+  color: white;
+
+}
+
+
+.navbar__item{
+  display: inline-block;
+  transition: all 300ms ease;
+  padding: 15px;
+  font-size: 20px;
+  text-shadow: 2px 3px 5px black;
+}
+
+.navbar__item.clicked {
+  color: goldenrod;
+}
+
+
+.navbar__item:hover{
+  cursor: pointer;
+  color: goldenrod;
+}
+
+
+.bg{
+  background: url("http://science-all.com/images/landscape/landscape-04.jpg");
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+}
+
+.album-container{ 
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  opacity: 1;
+  transition: all 300ms ease;
+}
+
+.album-container.invisible {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 300ms ease;
+  transform: translateX(-100%);
+}
+
+.overlay{
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  display: block;
+  position: fixed;
+  opacity: 0.8;
+  top: 0;
+  z-index: -3;
+}
+
+.card.zoomed {
+  transform: scale(1.5);
+  opacity: 1;
+  box-shadow: 1px 1px 20px -3px black;
+  transition: all 200ms ease;
+  z-index: 10;
+}
+
+.welcome-overlay{
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  display: block;
+  position: fixed;
+  opacity: 0.8;
+  top: 0;
+  z-index: 0;
+}
+
+.photolist{
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: auto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-x: scroll;
+}
+
+.album-title{
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+}
+
+.photolist__link{
+  float: left;
+}
+
+.photolist__item{
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0 20px;
+  padding: 0;
+}
+
+.photolist__photo{
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  transition: all 100ms ease;
+  box-shadow: 1px 1px 10px 0px black;
+}
+
+.photolist__photo:hover{
+  box-shadow: 1px 1px 5px 3px black;
+}
+
+
+.place-description{
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.arrow-previous {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.arrow-previous:hover {
+  color: gray;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+@media (max-width: 600px){ 
+  .column__left,
+  .column__right {
+    width: 100%;
+  }
+
+  .welcome-container {
+    margin-top: 50px;
+  }
+
+  nav {
+    width: 100%;
+    position: fixed;
+    overflow: auto;
+    background-color: orange;
+    height: 55px;
+    display: inline-block;
+    box-shadow: 1px 1px 20px -3px black;
+    white-space: nowrap;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  nav:before {
+    width: 55px;
+    height: 55px;
+    /* display: none; */
+    position: absolute;
+    right: -22px;
+    top: 0px;
+    z-index: 10;
+    content: ' ';
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(200%, white));
+    position: fixed;
+  }
+
+  .navbar__list {
+    padding: 0;
+  }
+}
+
+
+
