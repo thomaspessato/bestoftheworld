@@ -11,8 +11,9 @@
 	window.addEventListener("click",function(evt){
 		var target = evt.target;
 		if(target.classList.contains("navbar__item")){
-			getFlickrImages(target.innerHTML);
-			DOM.mainTitle.innerHTML = target.innerHTML;
+			var clickedCountry = target.innerHTML;
+			getFlickrImages(clickedCountry);
+			DOM.mainTitle.innerHTML = clickedCountry;
 		}
 		if(target.classList.contains("card")) {
 			zoomPhoto(target);
@@ -29,10 +30,9 @@
 	}
 
 	function getFlickrImages(country){
-
 		var divWrapper = document.createElement("div"),
 			counter = 0;
-		
+
 		switchVisibility(DOM.albumContainer);
 
 		$.getJSON( flickrURL, {
@@ -40,18 +40,19 @@
 		    tagmode: "all",
 		    format: "json"
 	  	}).done(function( data ) {
-
-	      $.each( data.items, function( i, item ) {
-	      	if(!item.media.m.match("creative")){
-	      		console.log(i);
-	      		$( "<div class='card' style='background: url("+item.media.m+")'><p class='author'>"+item.title+"/ by "+item.author+"</p></div>" ).appendTo(divWrapper);
-	      	}
-	      });
-	      DOM.albumContainer.firstChild.remove();
-	      DOM.albumContainer.appendChild(divWrapper);
-	      switchVisibility(DOM.albumContainer);
-	      
+	  		renderPhotos(data);
 		});
+	}
+
+	function renderPhotos(data){
+		$.each( data.items, function( i, item ) {
+			if(!item.media.m.match("creative")){
+				$( "<div class='card' style='background: url("+item.media.m+")'><p class='author'>"+item.title+"/ by "+item.author+"</p></div>" ).appendTo(divWrapper);
+			}
+		});
+		DOM.albumContainer.firstChild.remove();
+		DOM.albumContainer.appendChild(divWrapper);
+		switchVisibility(DOM.albumContainer);
 	}
 
 	function switchVisibility(element){
@@ -61,7 +62,5 @@
 			element.classList.add("invisible");
 		}	
 	}
-
-
 
 })();
