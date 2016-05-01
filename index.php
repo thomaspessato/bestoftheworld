@@ -52,5 +52,6 @@
     </div>
 
   </body>
+  <script type="text/javascript" src="sources/_js/classes/Photo.js"></script>
   <script type="text/javascript" src="sources/_js/context.js"></script>
 </html>

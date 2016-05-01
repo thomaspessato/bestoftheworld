@@ -1,7 +1,6 @@
 (function (){
-	var flickrURL = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-		arrayCountries = [],
-		DOM = {
+	const flickrURL = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+	var DOM = {
 	    	albumContainer: document.getElementById("album-container"),
 	    	countryList: document.getElementById("country-list"),
 	    	listCountries: document.getElementsByClassName("navbar__item"),
@@ -20,40 +19,33 @@
 		}
 	}, false);
 
-	function zoomPhoto(photoElement){
-  		if(photoElement.classList.contains("zoomed")) {
-			photoElement.classList.remove("zoomed");
-    	}
-		else {
-	 		photoElement.classList.add("zoomed");
-	  	}
-	}
-
 	function getFlickrImages(country){
 		var divWrapper = document.createElement("div"),
-			counter = 0;
+			counter = 0,
+			photoData = {};
 
-		switchVisibility(DOM.albumContainer);
+		showPhotos(DOM.albumContainer);
 
 		$.getJSON( flickrURL, {
 		    tags: "landscape,city,"+country,
 		    tagmode: "all",
 		    format: "json"
 	  	}).done(function( data ) {
-	  		renderPhotos(data);
-		});
-	}
 
-	function renderPhotos(data){
-		$.each( data.items, function( i, item ) {
-			if(!item.media.m.match("creative")){
-				$( "<div class='card' style='background: url("+item.media.m+")'><p class='author'>"+item.title+"/ by "+item.author+"</p></div>" ).appendTo(divWrapper);
-			}
+	  		$.each( data.items, function( i, item ) {
+
+	  			photoData.url = item.media.m;
+	  			photoData.author = item.author;
+	  			photoData.description = item.title;
+
+	  			var newPhoto = new Photo(photoData);
+	  			newPhoto.renderPhoto(DOM.albumContainer,divWrapper);
+
+	  		});
+	  		showPhotos(DOM.albumContainer);
 		});
-		DOM.albumContainer.firstChild.remove();
-		DOM.albumContainer.appendChild(divWrapper);
-		switchVisibility(DOM.albumContainer);
 	}
+	
 
 	function switchVisibility(element){
 		if(element.classList.contains("invisible")){
@@ -61,6 +53,10 @@
 		} else {
 			element.classList.add("invisible");
 		}	
+	}
+
+	function showPhotos(album){
+		switchVisibility(album);
 	}
 
 })();
